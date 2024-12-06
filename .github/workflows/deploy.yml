@@ -1,0 +1,34 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+          submodules: true
+          fetch-depth: 0
+
+    - name: Set up Hugo
+      uses: peaceiris/actions-hugo@v2.6.0
+      with:
+        hugo-version: "latest"
+        extended: true
+
+    - name: Build and Deploy
+      run: |
+        hugo -F --cleanDestinationDir  # 生成静态文件
+        mkdir -p public  # 确保public文件夹存在
+        cp -r public/* ./  # 复制生成的静态文件到仓库根目录
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3.9.3
+      with:
+        PERSONAL_TOKEN: {{ github.event.head_commit.message }}
