@@ -22,6 +22,12 @@ jobs:
         hugo-version: "latest"
         extended: true
 
+    - name: Print working directory
+      run: pwd
+
+    - name: List files in root directory
+      run: ls -la
+
     - name: Build and Deploy
       run: |
         hugo -F --cleanDestinationDir  # 生成静态文件
@@ -31,4 +37,4 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3.9.3
       with:
-        PERSONAL_TOKEN:  ${{ secrets.DEPLOY_TOKEN }}
+        PERSONAL_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
