@@ -1,0 +1,9 @@
+   @font-face {
+       src: url('../../assets/fonts/Rainbow-Party-2.ttf') format('truetype'), /* 引入字体文件 */
+       url('../../assets/fonts/font1.ttf') format('truetype'), /* 引入字体文件 */
+       url('../../assets/fonts/font2.ttf') format('truetype'); /* 引入字体文件 */
+       font-family: 'CustomFont'; /* 定义字体的名称 */
+     font-weight: normal;
+     font-style: normal;
+   }
+   
